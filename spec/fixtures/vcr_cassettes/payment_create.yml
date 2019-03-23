@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://private-6d20e-coolpayapi.apiary-mock.com/api/payments
+    body:
+      encoding: UTF-8
+      string: amount=12.34&currency=usd&recipient_id=6e7b4cea-5957-11e6-8b77-86f30ca893d3
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin18.2.0 x86_64) ruby/2.6.2p47
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Bearer aff06fec-e041-4994-849e-223f0569e0bc
+      Content-Length:
+      - '75'
+      Host:
+      - private-6d20e-coolpayapi.apiary-mock.com
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      X-Apiary-Ratelimit-Limit:
+      - '120'
+      X-Apiary-Ratelimit-Remaining:
+      - '119'
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+      Access-Control-Max-Age:
+      - '10'
+      X-Apiary-Transaction-Id:
+      - 5c964ba38c1fcd0a0094ca5f
+      Content-Length:
+      - '228'
+      Date:
+      - Sat, 23 Mar 2019 15:07:15 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "payment": {
+                "id": "31db334f-9ac0-42cb-804b-09b2f899d4d2",
+                "amount": "12.34",
+                "currency": "USD",
+                "recipient_id": "6e7b4cea-5957-11e6-8b77-86f30ca893d3",
+                "status": "processing"
+            }
+        }
+    http_version: 
+  recorded_at: Sat, 23 Mar 2019 15:07:16 GMT
+recorded_with: VCR 4.0.0

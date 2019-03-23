@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://private-6d20e-coolpayapi.apiary-mock.com/api/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"your_username","apikey":"5up3r$ecretKey!"}'
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin18.2.0 x86_64) ruby/2.6.2p47
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '55'
+      Host:
+      - private-6d20e-coolpayapi.apiary-mock.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      X-Apiary-Ratelimit-Limit:
+      - '120'
+      X-Apiary-Ratelimit-Remaining:
+      - '119'
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+      Access-Control-Max-Age:
+      - '10'
+      X-Apiary-Transaction-Id:
+      - 5c963e925dc8a10a00decd5b
+      Content-Length:
+      - '55'
+      Date:
+      - Sat, 23 Mar 2019 14:11:30 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "token": "aff06fec-e041-4994-849e-223f0569e0bc"
+        }
+    http_version: 
+  recorded_at: Sat, 23 Mar 2019 14:11:30 GMT
+- request:
+    method: get
+    uri: https://private-6d20e-coolpayapi.apiary-mock.com/api/recipients
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin18.2.0 x86_64) ruby/2.6.2p47
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer aff06fec-e041-4994-849e-223f0569e0bc
+      Host:
+      - private-6d20e-coolpayapi.apiary-mock.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      X-Apiary-Ratelimit-Limit:
+      - '120'
+      X-Apiary-Ratelimit-Remaining:
+      - '118'
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+      Access-Control-Max-Age:
+      - '10'
+      X-Apiary-Transaction-Id:
+      - 5c963e925dc8a10a00decd5c
+      Content-Length:
+      - '143'
+      Date:
+      - Sat, 23 Mar 2019 14:11:30 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "recipients": [
+                {
+                    "id": "6e7b4cea-5957-11e6-8b77-86f30ca893d3",
+                    "name": "Jake McFriend"
+                }
+            ]
+        }
+    http_version: 
+  recorded_at: Sat, 23 Mar 2019 14:11:30 GMT
+recorded_with: VCR 4.0.0
