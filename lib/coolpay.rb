@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require 'coolpay/version'
+require 'coolpay/helpers'
 require 'coolpay/api_request'
+require 'coolpay/payment'
+require 'coolpay/recipient'
 
 #
 # Interface to the Coolpay API
