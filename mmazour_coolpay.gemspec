@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['michaelmazour@gmail.com']
 
   spec.summary       = 'Coolpay is a wrapper for the Coolpay API.'
-  spec.homepage      = 'http://github.com/mmazour/coolpay'
+  spec.homepage      = 'https://github.com/mmazour/coolpay'
   spec.license       = 'MIT'
 
   spec.files         = Dir.glob('lib/**/*.rb') + %w[README.md TODO Rakefile]
