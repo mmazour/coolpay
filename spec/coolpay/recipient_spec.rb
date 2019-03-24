@@ -3,15 +3,14 @@
 require 'spec_helper'
 
 RSpec.describe 'Recipient' do
-  MOCK_API_URL = 'https://private-6d20e-coolpayapi.apiary-mock.com/api'
   RECIPIENT_1_ID = '123abc'
   RECIPIENT_1_NAME = 'R. E. Cipient'
-  LIST_API_RESULT = {
+  RCP_LIST_RESULT = {
     recipients: [
       { id: RECIPIENT_1_ID, name: RECIPIENT_1_NAME }
     ]
   }.freeze
-  CREATE_API_RESULT = {
+  RCP_CREATE_RESULT = {
     recipient: { id: RECIPIENT_1_ID, name: RECIPIENT_1_NAME }
   }.freeze
   API_ERROR = { errors: [] }.freeze
@@ -26,7 +25,7 @@ RSpec.describe 'Recipient' do
 
   context 'list recipients' do
     it 'makes an API request and returns Recipient objects' do
-      expect(Coolpay::APIRequest).to receive(:recipients) { LIST_API_RESULT }
+      expect(Coolpay::APIRequest).to receive(:recipients) { RCP_LIST_RESULT }
       results = Coolpay::Recipient.list
       expect(results.count).to be 1
       expect(results.first).to be_a(Coolpay::Recipient)
@@ -44,7 +43,7 @@ RSpec.describe 'Recipient' do
 
   context 'find recipient' do
     it 'makes an API request and returns a Recipient' do
-      expect(Coolpay::APIRequest).to receive(:recipients) { LIST_API_RESULT }
+      expect(Coolpay::APIRequest).to receive(:recipients) { RCP_LIST_RESULT }
       recipient = Coolpay::Recipient.find(RECIPIENT_1_NAME)
       expect(recipient).to be_a(Coolpay::Recipient)
       expect(recipient.id).to match RECIPIENT_1_ID
@@ -66,7 +65,7 @@ RSpec.describe 'Recipient' do
   context 'create recipient' do
     it 'makes an API request and returns the created recipient' do
       expect(Coolpay::APIRequest)
-        .to receive(:create_recipient) { CREATE_API_RESULT }
+        .to receive(:create_recipient) { RCP_CREATE_RESULT }
       recipient = Coolpay::Recipient.create(RECIPIENT_1_NAME)
       expect(recipient).to be_a(Coolpay::Recipient)
       expect(recipient.id).to match RECIPIENT_1_ID

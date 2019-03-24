@@ -14,3 +14,8 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+# Coolpay mock API URL
+MOCK_API_URL = 'https://private-6d20e-coolpayapi.apiary-mock.com/api'
+MOCK_USERNAME = 'your_username'
+MOCK_API_KEY = '5up3r$ecretKey!'

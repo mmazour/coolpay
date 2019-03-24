@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 RSpec.describe 'Payment' do
-  MOCK_API_URL = 'https://private-6d20e-coolpayapi.apiary-mock.com/api'
   PAYMENT_1_ID = '111aaa'
   PAYMENT_1_RECIPIENT_ID = '222bbb'
   PAYMENT_1_AMOUNT = 12.75
@@ -45,7 +44,6 @@ RSpec.describe 'Payment' do
     it 'makes an API request and returns Payment objects' do
       expect(Coolpay::APIRequest).to receive(:payments) { LIST_API_RESULT }
       results = Coolpay::Payment.list
-      STDERR.puts results.inspect
       expect(results.count).to be 1
       expect(results.first).to be_a(Coolpay::Payment)
       expect(results.first.id).to match PAYMENT_1_ID

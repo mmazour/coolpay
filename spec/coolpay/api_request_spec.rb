@@ -4,9 +4,6 @@ require 'spec_helper'
 require 'vcr'
 
 RSpec.describe 'APIRequest' do
-  MOCK_API_URL = 'https://private-6d20e-coolpayapi.apiary-mock.com/api'
-  MOCK_USERNAME = 'your_username'
-  MOCK_API_KEY = '5up3r$ecretKey!'
   RECIPIENTS = [
     { id: '6e7b4cea-5957-11e6-8b77-86f30ca893d3', name: 'Jake McFriend' }
   ].freeze
