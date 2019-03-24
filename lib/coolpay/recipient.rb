@@ -31,6 +31,8 @@ module Coolpay
         description: "finding recipient '#{name}'",
         expect_and_return_key: :recipients
       ).first
+      return nil unless recipient
+
       new(id: recipient[:id], name: recipient[:name])
     end
 
