@@ -1,38 +1,85 @@
-# MmazourCoolpay
+# mmazour's Coolpay gem
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mmazour_coolpay`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is an API wrapper for the [Coolpay API](https://coolpayapi.docs.apiary.io).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'mmazour_coolpay'
+gem 'coolpay', git: 'https://github.com/mmazour/coolpay'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
 
-    $ gem install mmazour_coolpay
+## Requirements
+
+A Coolpay account and API key.
+
+This gem was developed and tested under Ruby 2.6.2, but ought to run on earlier (stable, supported) versions of Ruby.
 
 ## Usage
 
-TODO: Write usage instructions here
+First, configure Coolpay:
 
-## Development
+```ruby
+$ bin/console
+> Coolpay.api_url = 'https://your-coolpay-server.io/api'
+> Coolpay.username = 'your-username'
+> Coolpay.api_key = 'your-secret-key'
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+All requests require a session token obtained during login. Login is automatic (every request will log in if you are not already logged in), but if you want to check the validity of your credentials first, you can log in directly.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+> Coolpay.authorized?
+=> false
+> Coolpay.authorize
+=> true
+```
 
-## Contributing
+#### Recipients
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mmazour_coolpay. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Searching and listing recipients:
+
+```ruby
+> Coolpay::Recipient.find('Jake McFriend')
+=> #<Coolpay::Recipient:0x00007fad1e8c7828 @id="6e7b4cea-5957-11e6-8b77-86f30ca893d3", @name="Jake McFriend">
+
+> Coolpay::Recipient.list
+=> [#<Coolpay::Recipient:0x00007fad1e4998c8 @id="6e7b4cea-5957-11e6-8b77-86f30ca893d3", @name="Jake McFriend">, #<Coolpay::Recipient:0x00007fad1e5924f0 @id="2a699718-142a-469e-8c1f-9b486b20bbbf", @name="Sandy McPal">]
+```
+
+Recipients are instances of `Coolpay::Recipient`, with immutable `id` and `name` properties.
+
+To create a new recipient:
+
+```ruby
+> Coolpay::Recipient.create('D. Bestie')
+=> #<Coolpay::Recipient:0x00007fad1e5e0268 @id="d6d1189c-d88f-4b28-b7d6-b1cf362cc9d3", @name="D. Bestie">
+```
+
+#### Payments
+
+Making a payment requires the `id` of a `Recipient`, an amount, and a currency (using one of the standard abbreviations) 
+
+```ruby
+# Send some money to D. Bestie
+> Coolpay::Payment.create(recipient: 'd6d1189c-d88f-4b28-b7d6-b1cf362cc9d3', amount: 17.50, currency: :gbp)
+=> #<Coolpay::Payment:0x00007fad1e69f780 @id="7328f67b-4dd9-4148-a0e4-ff3280afda8f", @recipient_id="d6d1189c-d88f-4b28-b7d6-b1cf362cc9d3", @currency=:gbp, @amount=17.5, @string_amount="17.5", @status="processing">
+```
+
+Listing payments:
+
+```ruby
+> Coolpay::Payment.list
+=> [#<Coolpay::Payment:0x00007fad1d8a2628 @id="7328f67b-4dd9-4148-a0e4-ff3280afda8f", @recipient_id="d6d1189c-d88f-4b28-b7d6-b1cf362cc9d3", @currency=:gbp, @amount=17.5, @string_amount="17.5", @status="paid">]
+```
+
+(Coolpay has no "find payment" API. If you need to find a specific payment, fetch the whole list and filter it.)
 
 ## License
 
@@ -40,4 +87,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the MmazourCoolpay project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/mmazour_coolpay/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the MmazourCoolpay project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/mmazour/mmazour_coolpay/blob/master/CODE_OF_CONDUCT.md).
