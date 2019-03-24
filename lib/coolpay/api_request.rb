@@ -41,9 +41,11 @@ module Coolpay
     def self.create_payment(amount:, currency:, recipient_id:)
       Coolpay.authorize
       params = {
-        amount: amount,
-        currency: currency,
-        recipient_id: recipient_id
+        payment: {
+          amount: amount,
+          currency: currency,
+          recipient_id: recipient_id
+        }
       }
       parse_json RestClient.post(url_for('payments'), params, headers)
     end
